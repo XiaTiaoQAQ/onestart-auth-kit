@@ -53,11 +53,12 @@ export class EmailProvider implements AuthProvider<EmailCredential>, CodeSender 
   }
 
   async sendCode(target: string, scene: CodeScene, ctx: RequestContext): Promise<void> {
+    // 先发后存:发送失败则不落库、不覆盖旧码
     const buf = new Uint32Array(1)
     crypto.getRandomValues(buf)
     const code = String((buf[0] ?? 0) % 10 ** this.codeLength).padStart(this.codeLength, '0')
-    await this.codes.save(target, scene, code, this.ttlSec)
     await this.channel.send(target, code, { scene, ...(ctx.locale ? { locale: ctx.locale } : {}) })
+    await this.codes.save(target, scene, code, this.ttlSec)
   }
 
   async verify(credential: EmailCredential, _ctx: RequestContext): Promise<IdentityClaim> {

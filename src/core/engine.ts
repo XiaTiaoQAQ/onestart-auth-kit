@@ -299,7 +299,8 @@ export class AuthKit {
 
     const rate = this.policy.codeRate
     if (rate) {
-      const resendKey = `authkit:rl:resend:${normalized}`
+      // 冷却按 (scene, target) 维度(对齐 m612/rensheji 现网行为);日限/IP 限按 target 全局
+      const resendKey = `authkit:rl:resend:${scene}:${normalized}`
       const resendTtl = await this.kv.ttl(resendKey)
       if (resendTtl > 0) throw new AuthError('code_rate_limited', { retryAfterSec: resendTtl })
       const day = new Date().toISOString().slice(0, 10)

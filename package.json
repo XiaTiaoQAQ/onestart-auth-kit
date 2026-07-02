@@ -1,6 +1,6 @@
 {
   "name": "@1start/auth-kit",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "Multi-platform user/auth SDK: pluggable login providers, port-injected storage, dual token strategies",
   "type": "module",
   "main": "./dist/core/index.js",
@@ -47,7 +47,11 @@
       "import": "./dist/hono/index.js"
     }
   },
-  "files": ["dist", "README.md", "docs/DESIGN.md"],
+  "files": [
+    "dist",
+    "README.md",
+    "docs/DESIGN.md"
+  ],
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "typecheck": "tsc --noEmit",
@@ -82,5 +86,15 @@
   "publishConfig": {
     "access": "public"
   },
-  "keywords": ["auth", "login", "wechat", "douyin", "alipay", "miniprogram", "jwt", "bun", "hono"]
+  "keywords": [
+    "auth",
+    "login",
+    "wechat",
+    "douyin",
+    "alipay",
+    "miniprogram",
+    "jwt",
+    "bun",
+    "hono"
+  ]
 }

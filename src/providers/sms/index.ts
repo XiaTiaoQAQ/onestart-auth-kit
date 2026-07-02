@@ -16,6 +16,8 @@ export interface SmsChannel {
   send(phone: string, code: string, opts: { scene: CodeScene; locale?: string }): Promise<void>
 }
 
+export { AliyunSmsChannel, type AliyunSmsOptions } from './aliyun'
+
 /** 开发替身:验证码只进日志,绝不可用于生产。 */
 export class StubSmsChannel implements SmsChannel {
   lastCode: string | null = null
@@ -58,9 +60,10 @@ export class SmsProvider implements AuthProvider<SmsCredential>, CodeSender {
   }
 
   async sendCode(target: string, scene: CodeScene, ctx: RequestContext): Promise<void> {
+    // 先发后存:发送失败则不落库、不覆盖旧码(引擎的冷却也只在成功后设置)
     const code = this.generateCode()
-    await this.codes.save(target, scene, code, this.ttlSec)
     await this.channel.send(target, code, { scene, ...(ctx.locale ? { locale: ctx.locale } : {}) })
+    await this.codes.save(target, scene, code, this.ttlSec)
   }
 
   async verify(credential: SmsCredential, _ctx: RequestContext): Promise<IdentityClaim> {

@@ -2,7 +2,11 @@
 
 1start.net 的多平台用户/认证 SDK。管线不变、provider 可插、存储走端口:一个包、四个模块入口,模块间只靠接口耦合,为下一个项目分钟级接入而设计。
 
-> 当前状态:设计阶段。完整设计见 [docs/DESIGN.md](docs/DESIGN.md),执行计划见 [docs/ROADMAP.md](docs/ROADMAP.md)。
+> 当前状态:**v0.1.3 已发布 npm 并完成两个生产项目接入**(rensheji 全量 / m612 保门面,验证详见 ROADMAP 各阶段验收)。完整设计见 [docs/DESIGN.md](docs/DESIGN.md),执行计划见 [docs/ROADMAP.md](docs/ROADMAP.md)。
+>
+> ```bash
+> bun add @1start/auth-kit        # 或 npm i @1start/auth-kit
+> ```
 
 ## 包:一个,`@1start/auth-kit`
 

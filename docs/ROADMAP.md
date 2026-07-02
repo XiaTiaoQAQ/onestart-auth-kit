@@ -1,5 +1,17 @@
 # onestart-auth-kit 路线图
 
+> **进度(2026-07-02)**:阶段 0–5 已完成。`@1start/auth-kit@0.1.3` 发布于 npm(`@1start` org);
+> 仓库 https://github.com/XiaTiaoQAQ/onestart-auth-kit 。
+> - 阶段 0–3 验收:65 项单测全绿(双策略行为矩阵 + 依赖方向断言)、PG 集成测试含 100 并发同 openid
+>   建号仅产生 1 用户、demo 全流程冒烟(SMOKE_OK)。
+> - 阶段 4(rensheji)验收:适配器方案零数据迁移(RenshejiAuthStore 映射既有四张表);typecheck +
+>   17 项测试全绿;HTTP 冒烟 10 步全过(平台登录/身份复用/账号兜底/短信注册/双密码登录/错误契约
+>   404·400·429/登出/封禁即时生效);顺手补齐:登录失败锁定、username 身份化(存量列虚拟身份兼容)。
+>   支付宝 RSA2 provider 已就绪,真机联调待 appid/私钥(密钥清单)。
+> - 阶段 5(m612)验收:保门面(AuthService 签名不动)+ KyselyAuthStore 零迁移;auth e2e 8/8、
+>   user e2e 10/10、全量 e2e 77/77、单测 212 项全绿;JWT payload 对齐,已发放 token 无缝有效。
+> - 阶段 6(apple/email provider 代码已随 0.1.x 发布,真机与前端半边)未开始。
+
 > 完整背景:本 SDK 提炼自 m612-pet-api(三步身份解析 + JWT/session/token_version + hook 解耦)与 rensheji-backend(opaque token + 幂等建表 + 多平台 code2session)两套经线上验证的实现。接口定义与数据边界见 [DESIGN.md](./DESIGN.md)——先冻结接口再动工,阶段内不返工接口。
 > DB 解耦沿用 onestart-ai-kit 已验证模式:`SqlExecutor` / `RedisLike` 注入,SDK 零驱动依赖。
 

@@ -1,6 +1,6 @@
 {
   "name": "@1start/auth-kit",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Multi-platform user/auth SDK: pluggable login providers, port-injected storage, dual token strategies",
   "type": "module",
   "main": "./dist/core/index.js",

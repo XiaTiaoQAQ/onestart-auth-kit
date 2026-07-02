@@ -271,7 +271,9 @@ export class AuthKit {
     await this.store.bumpTokenVersion(fromUserId)
     await this.tokens.revokeAllForUser(fromUserId)
     await this.store.markLogin(to.id, new Date())
-    const tokens = await this.tokens.issue(to, ctx)
+    // 换发前重读 to,取最新 tokenVersion——避免与并发全端登出竞态导致新凭证出生即失效
+    const fresh = (await this.store.findUserById(toUserId)) ?? to
+    const tokens = await this.tokens.issue(fresh, ctx)
     return { tokens }
   }
 

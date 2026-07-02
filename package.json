@@ -1,0 +1,86 @@
+{
+  "name": "@1start/auth-kit",
+  "version": "0.1.0",
+  "description": "Multi-platform user/auth SDK: pluggable login providers, port-injected storage, dual token strategies",
+  "type": "module",
+  "main": "./dist/core/index.js",
+  "types": "./dist/core/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/core/index.d.ts",
+      "import": "./dist/core/index.js"
+    },
+    "./providers/wechat-mini": {
+      "types": "./dist/providers/wechat-mini/index.d.ts",
+      "import": "./dist/providers/wechat-mini/index.js"
+    },
+    "./providers/douyin-mini": {
+      "types": "./dist/providers/douyin-mini/index.d.ts",
+      "import": "./dist/providers/douyin-mini/index.js"
+    },
+    "./providers/alipay-mini": {
+      "types": "./dist/providers/alipay-mini/index.d.ts",
+      "import": "./dist/providers/alipay-mini/index.js"
+    },
+    "./providers/apple": {
+      "types": "./dist/providers/apple/index.d.ts",
+      "import": "./dist/providers/apple/index.js"
+    },
+    "./providers/sms": {
+      "types": "./dist/providers/sms/index.d.ts",
+      "import": "./dist/providers/sms/index.js"
+    },
+    "./providers/email": {
+      "types": "./dist/providers/email/index.d.ts",
+      "import": "./dist/providers/email/index.js"
+    },
+    "./providers/password": {
+      "types": "./dist/providers/password/index.d.ts",
+      "import": "./dist/providers/password/index.js"
+    },
+    "./store-postgres": {
+      "types": "./dist/store-postgres/index.d.ts",
+      "import": "./dist/store-postgres/index.js"
+    },
+    "./hono": {
+      "types": "./dist/hono/index.d.ts",
+      "import": "./dist/hono/index.js"
+    }
+  },
+  "files": ["dist", "README.md", "docs/DESIGN.md"],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit",
+    "test": "bun test src",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "prepublishOnly": "bun run build"
+  },
+  "peerDependencies": {
+    "hono": ">=4",
+    "jose": ">=5",
+    "@node-rs/argon2": ">=1"
+  },
+  "peerDependenciesMeta": {
+    "hono": {
+      "optional": true
+    },
+    "jose": {
+      "optional": true
+    },
+    "@node-rs/argon2": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@types/bun": "^1.1.14",
+    "hono": "^4.6.14",
+    "typescript": "^5.6.3"
+  },
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": ["auth", "login", "wechat", "douyin", "alipay", "miniprogram", "jwt", "bun", "hono"]
+}

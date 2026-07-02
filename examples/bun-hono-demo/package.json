@@ -1,0 +1,13 @@
+{
+  "name": "bun-hono-demo",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "bun run src/index.ts",
+    "smoke": "bun run src/smoke.ts"
+  },
+  "dependencies": {
+    "@1start/auth-kit": "file:../..",
+    "hono": "^4.6.14"
+  }
+}
